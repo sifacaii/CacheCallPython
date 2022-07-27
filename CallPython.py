@@ -23,7 +23,7 @@ def CallPython(args):
 		result['msg'] = '执行成功'
 
 	
-	return json.dumps(result,ensure_ascii=False)
+	return json.dumps(result,ensure_ascii=False,separators=(',', ':'))
 
 if __name__ == "__main__":
 	print(CallPython("aaa"))
