@@ -4,12 +4,17 @@ def CallPython(args):
 		'msg':'',
 		'data':''
 	}
+	import json
 	try:
+		args = json.loads(args)
+		modulePath = args['modulePath']
+		funName = args['funName']
+		params = args['params']
 		import sys
-		sys.path.append(r"D:\pyscript")
+		sys.path.append(modulePath)
 		import fibmodule
-		result['data'] = fibmodule.fengfa(args)
-
+		result['data'] = fibmodule.fengfa(funName,params)
+	
 	except Exception as exmsg:
 		result['code'] = 1
 		result['msg'] = str(exmsg)
@@ -17,7 +22,7 @@ def CallPython(args):
 		result['code'] = 0
 		result['msg'] = '执行成功'
 
-	import json
+	
 	return json.dumps(result,ensure_ascii=False)
 
 if __name__ == "__main__":
